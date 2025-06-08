@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="AssemBrain: Towards Embodied Intelligence Paradigms for Robot Collaboration in Spatial Assembly" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AssemBrain</title>
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link rel="icon" href="./static/images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                <span class="highlight"> 🤖AssemBrain</span>
+              </h1>
+              <h2 class="title is-3 publication-title">
+                Towards Embodied Intelligence Paradigms for Robot Collaboration in Spatial Assembly
+              </h2>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="mailto:wu_duidi@sjtu.edu.cn">Duidi Wu</a>,
+                </span>
+                <span class="author-block">
+                  <a href="#">Qianyou Zhao</a>,
+                </span>
+                <span class="author-block">
+                  <a href="#">Yuliang Shen</a>,
+                </span>
+                <span class="author-block">
+                  <a href="#">Junlai Li</a>,
+                </span>
+                <span class="author-block">
+                  <a href="mailto:jinhuaqj@sjtu.edu.cn">Jin Qi</a><sup>&dagger;</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="mailto:hujie@sjtu.edu.cn">Jie Hu</a><sup>&dagger;</sup>
+                </span>
+              </div>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Shanghai Jiao Tong University</span>
+              </div>
+              <div class="is-size-6 publication-authors">
+                (<sup>&dagger;</sup><span class="author-block">Corresponding Author</span>)
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- Paper Link -->
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/xxxx.xxxxx" 
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>  
+                      </span>
+                      <span>Paper (under review)</span>
+                    </a>
+                  </span>
+                  <!-- Video Link -->
+                  <span class="link-block">
+                    <a href="https://youtu.be/your_video_id"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-youtube"></i> 
+                      </span>
+                      <span>Video</span>
+                    </a>
+                  </span>
+                  <!-- Code Link -->
+                  <span class="link-block">
+                    <a href="https://github.com/yourrepo/assembbrain"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i> 
+                      </span>
+                      <span>Code (comming soon)</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <img src="./static/imgs/Fig1_framwork.jpg" alt="Figure 1 Framework" style="width: 100%; margin-top: 1em; margin-bottom: 1em;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Industry 5.0 advocates human-centric, intelligent, and flexible manufacturing, 
+                with growing attention to unstructured assembly tasks. 
+                Multimodal large language models offer a promising pathway by enabling cross-modal understanding and contextual awareness.
+                However, their integration with embodied intelligence especially in physically interactive industrial settings remains limited. 
+                To address this, we propose AssemBrain, a brain-inspired hierarchical framework integrating MLLMs and embodied control across three levels: 
+                task understanding and planning, vision-language-guided planar manipulation, and reinforcement learning-based contact-rich assembly primitives. 
+                The proposed framework is evaluated through simulated tasks of varying complexity and degrees of freedom, covering diverse object and texture types. 
+                Experimental results demonstrate strong execution efficiency.
+                This study establishes a baseline for embodied intelligence-integrated manufacturing in this emerging domain. 
+                It is hoped that this work advance industrial robotics toward human-centered collaboration and provide insights for intelligent assembly systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Method Section -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full has-text-centered">
+            <h2 class="title is-2">Method</h2>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            This paper explores three paradigms for integrating MLLMs with embodied intelligence in smart manufacturing.
+            Inspired by the hierarchical architecture of the brain, <strong>AssemBrain</strong> is conceptualized as a multi-level cognitive system for intelligent spatial assembly.
+          </p>
+        </div>
+        
+        <div class="content">
+          <h3 class="title is-4">1. LLM for Unstructured Task Planning</h3>
+          <div class="columns is-vcentered">
+            <div class="column is-half">
+          <p class="has-text-justified">
+            <strong>Level 1 (L1): "Cognitive Cortex"</strong>
+            <br><br>
+            L1 corresponds to the brain's higher-order cognitive regions, 
+            focusing on understanding language instructions and long-term planning. 
+            This is fulfilled by MLLMs, which support zero-shot task interpretation, 
+            code generation, and task decomposition for unstructured tasks.
+          </p>
+            </div>
+            <div class="column is-half has-text-centered">
+              <img src="./static/imgs/Fig_p1.jpg" alt="LLM for Unstructured Task Planning" style="width: 90%;" />
+            </div>
+          </div>
+
+          <h3 class="title is-4">2. VLA for Visuo-Lingo Motor Policy</h3>
+          <div class="columns is-vcentered">
+            <div class="column is-half">
+              <p class="has-text-justified">
+                <strong>Level 2 (L2): "Sensorimotor Cortex"</strong>
+                <br><br>
+                L2 mirrors the sensorimotor regions that integrate visual and linguistic  
+                inputs to guide physical actions. 
+                This is embodied by Vision-Language Action models, 
+                excelling in SE(2) planar tasks such as pick-and-place.
+              </p>
+            </div>
+            <div class="column is-half has-text-centered">
+              <img src="./static/imgs/Fig_p2.jpg" alt="VLA for Visuo-Lingo Motor Policy" style="width: 90%;" />
+            </div>
+          </div>
+
+          <h3 class="title is-4">3. Primitives for Contact-Rich Assembly</h3>
+          <div class="columns is-vcentered">
+            <div class="column is-half">
+              <p class="has-text-justified">
+                <strong>Level 3 (L3): "Cerebellum"</strong>
+                <br><br>
+                L3 is like the cerebellum, which refines motor commands for precision and stability. 
+                This paradigm leverages action primitives and reinforcement learning 
+                to execute complex SE(3) manipulation in contact-rich assembly, 
+                handling the nuances of force control and adaptation.
+              </p>
+            </div>
+            <div class="column is-half has-text-centered">
+              <img src="./static/imgs/Fig_p3.jpg" alt="Primitives for Contact-Rich Assembly" style="width: 90%;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiments Section -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full has-text-centered">
+            <!-- <h2 class="title is-2">Experiments</h2>-->
+            
+          </div>
+        </div>
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full has-text-centered">
+              <h3 class="title is-2">Planning Experiments</h3>
+            </div>
+          </div>
+
+          <div class="has-text-centered" style="margin-bottom: 2em;">
+            <img src="./static/imgs/Fig_p2_Tools.jpg" alt="Assembly tools and textures" style="width: 80%;" />
+          </div>
+
+        <div class="container is-max-desktop">
+          <div class="content">
+
+            <table class="table is-striped is-fullwidth" style="border-top: 2px solid #363636; border-bottom: 2px solid #363636;">
+              <thead>
+                <tr>
+                  <th style="width: 20%; text-align: center;"><b>Task Level</b></th>
+                  <th style="width: 20%; text-align: center;"><b>Task Type</b></th>
+                  <th colspan="2" style="text-align: center;"><b>Objects and Success Rates</b></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: center;"><b>Object-Generalization</b></td>
+                  <td style="text-align: center;">Pick-and-Place</td>
+                  <td style="text-align: center;">
+                    Hammer (85.00%)<br>
+                    Screwdriver (65.00%)<br>
+                    Gear (95.00%)
+                  </td>
+                  <td style="text-align: center;">
+                    Nut (56.00%)<br>
+                    Bolt (79.00%)<br>
+                    <b>Average: 76.00%</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;"><b>Scene-Understanding</b></td>
+                  <td style="text-align: center;">Contextual Pick</td>
+                  <td style="text-align: center;">
+                    Gold (86.00%)<br>
+                    Cuprum (89.00%)<br>
+                    Steel (84.04%)<br>
+                    Aluminum (83.00%)
+                  </td>
+                  <td style="text-align: center;">
+                    Corroded metal (93.00%)<br>
+                    Bronze (82.00%)<br>
+                    Wooden (85.00%)<br>
+                    Plastic (90.00%)<br>
+                    <b>Average: 86.50%</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center;"><b>Long-Horizon</b></td>
+                  <td style="text-align: center;">Rearrangement</td>
+                  <td style="text-align: center;">
+                    Hammer, Screw, Gear
+                  </td>
+                  <td style="text-align: center;">
+                    <b>Success Rate: 41.00%</b>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+          <!--<div class="has-text-centered" style="margin-bottom: 2em;">
+            <img src="./static/imgs/Fig_p2_ex.jpg" alt="Planning Experiments" style="width: 80%;" />
+          </div>-->
+          <br>
+          <div class="container is-max-desktop">
+            <div class="content has-text-centered">
+              <div style="margin-bottom: 2em;">
+                <!-- First row -->
+                <div style="margin-bottom: 1em;">
+                  <video controls autoplay muted loop style="width: 25%; margin-right: 0.5%">
+                    <source src="./static/videos/hammer.mp4" type="video/mp4"/>
+                    Your browser does not support the video tag.
+                  </video>
+                  <video controls autoplay muted loop style="width: 25%; margin-right: 0.5%">
+                    <source src="./static/videos/screwdriver.mp4" type="video/mp4"/>
+                    Your browser does not support the video tag.
+                  </video>
+                  <video controls autoplay muted loop style="width: 25%; margin-right: 0.5%">
+                    <source src="./static/videos/gear.mp4" type="video/mp4"/>
+                    Your browser does not support the video tag.
+                  </video>
+                  <video controls autoplay muted loop style="width: 25%; margin-right: 0.5%">
+                    <source src="./static/videos/nut.mp4" type="video/mp4"/>
+                    Your browser does not support the video tag.
+                  </video>
+                  <video controls autoplay muted loop style="width: 25%">
+                    <source src="./static/videos/bolt.mp4" type="video/mp4"/>
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <!-- Video captions -->
+                <!--<div style="display: flex; justify-content: space-between; width: 98%; margin: 0 auto;">
+                  <span style="font-size: 0.9em; color: #666; width: 25%;">Hammer</span>
+                  <span style="font-size: 0.9em; color: #666; width: 25%;">Screwdriver</span>
+                  <span style="font-size: 0.9em; color: #666; width: 25%;">Gear</span>
+                  <span style="font-size: 0.9em; color: #666; width: 25%;">Nut</span>
+                  <span style="font-size: 0.9em; color: #666; width: 25%;">Bolt</span>
+                </div>-->
+                <!-- Video captions -->
+                <div style="text-align: center; margin-top: 0.5em;">
+                  <span style="font-size: 1em; color: #666;"><b>Object-Generalization</b></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content has-text-centered">
+            <div style="margin-bottom: 2em;">
+              <!-- Two videos side by side -->
+              <div style="margin-bottom: 1em;">
+                <video controls autoplay muted loop style="width: 35%; margin-right: 1%">
+                  <source src="./static/videos/gold.mp4" type="video/mp4"/>
+                  Your browser does not support the video tag.
+                </video>
+                <video controls autoplay muted loop style="width: 35%">
+                  <source src="./static/videos/rearrange2.mp4" type="video/mp4"/>
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <!-- Video captions -->
+              <div style="display: flex; justify-content: space-between; width: 55%; margin: 0 auto;">
+                <span style="font-size: 1em; color: #666; width: 35%;"><b>Scene-Understanding</b></span>
+                <span style="font-size: 1em; color: #666; width: 35%;"><b>Long-Horizon</b></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="columns is-centered">
+            <div class="column is-full has-text-centered">
+              <h3 class="title is-2">Assembly Experiments</h3>
+            </div>
+          </div>
+
+          <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered has-text-justified">
+              <div class="column content">
+                <p><strong>Policy Comparison:</strong></p>
+                <ul>
+                  <li><b>A2C (Advantage Actor-Critic):</b> Baseline method using standard policy gradients with single-step updates.</li>
+                  <li><b>PPO (Proximal Policy Optimization):</b> Enhanced method with clipping mechanism for stable training and mini-batch updates.</li>
+                </ul>
+                
+                <p><strong>Control Strategy Comparison:</strong></p>
+                <ul>
+                  <li><b>OSC (Operational Space Control):</b> Computes end-effector force/torque in task space, suitable for dynamic interaction and contact-rich tasks.</li>
+                  <li><b>IK (Inverse Kinematics):</b> Transforms pose error to joint positions, simple but less robust to contact.</li>
+                </ul>
+                <p>
+                  All experiments are conducted in the Isaac Lab environment. The comparative study evaluates both policy learning algorithms and control strategies across different assembly tasks.
+                </p>
+                <br>        
+              </div>
+            </div>
+          </div>
+
+          <table class="table is-striped is-fullwidth" style="border-top: 2px solid #363636; border-bottom: 2px solid #363636;">
+            <thead>
+              <tr>
+                <th rowspan="2" style="vertical-align: middle;">Method</th>
+                <th colspan="3" style="text-align: center; border-bottom: 1px  #dbdbdb;"><b>PegInsert</b></th>
+                <th colspan="3" style="text-align: center; border-bottom: 1px  #dbdbdb;"><b>GearMesh</b></th>
+                <th colspan="3" style="text-align: center; border-bottom: 1px  #dbdbdb;"><b>NutThread</b></th>
+              </tr>
+              <tr>
+                <td style="text-align: center;">avg reward</td>
+                <td style="text-align: center;">avg step</td>
+                <td style="text-align: center;">success</td>
+                <td style="text-align: center;">avg reward</td>
+                <td style="text-align: center;">avg step</td>
+                <td style="text-align: center;">success</td>
+                <td style="text-align: center;">avg reward</td>
+                <td style="text-align: center;">avg step</td>
+                <td style="text-align: center;">success</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>PPO+IK</td>
+                <td style="text-align: center;">12.50</td>
+                <td style="text-align: center;">449.0</td>
+                <td style="text-align: center;">0</td>
+                <td style="text-align: center;">12.20</td>
+                <td style="text-align: center;">449.0</td>
+                <td style="text-align: center;">0</td>
+                <td style="text-align: center;">12.90</td>
+                <td style="text-align: center;">449.0</td>
+                <td style="text-align: center;">0</td>
+              </tr>
+              <tr>
+                <td>A2C+OSC</td>
+                <td style="text-align: center;">65.24</td>
+                <td style="text-align: center;">149.0</td>
+                <td style="text-align: center;">15.15%</td>
+                <td style="text-align: center;">66.25</td>
+                <td style="text-align: center;">299.0</td>
+                <td style="text-align: center;">12.5%</td>
+                <td style="text-align: center;">53.29</td>
+                <td style="text-align: center;">449.0</td>
+                <td style="text-align: center;">50%</td>
+              </tr>
+              <tr>
+                <td><b>PPO+OSC</b></td>
+                <td style="text-align: center;"><b>362.19</b></td>
+                <td style="text-align: center;"><b>149.0</b></td>
+                <td style="text-align: center;"><b>97.66%</b></td>
+                <td style="text-align: center;"><b>715.28</b></td>
+                <td style="text-align: center;"><b>299.0</b></td>
+                <td style="text-align: center;"><b>98.44%</b></td>
+                <td style="text-align: center;"><b>888.85</b></td>
+                <td style="text-align: center;"><b>449.0</b></td>
+                <td style="text-align: center;"><b>99.22%</b></td>
+              </tr>
+            </tbody>
+          </table>
+          <br> 
+
+          <!-- <div class="has-text-centered" style="margin-bottom: 1em;">
+            <strong>Before Training</strong>
+            <div class="columns is-mobile is-centered">
+              <div class="column has-text-centered">
+                <img src="./static/imgs/Peginsertion_notrain.gif" alt="Peg Insertion Not Trained" style="width: 100%; max-width: 260px;" />
+                <p style="font-size: 1em; color: #888;">Peg Insertion</p>
+              </div>
+              <div class="column has-text-centered">
+                <img src="./static/imgs/Gearmesh_Notrain.gif" alt="Gear Mesh Not Trained" style="width: 100%; max-width: 260px;" />
+                <p style="font-size: 1em; color: #888;">Gear Mesh</p>
+              </div>
+              <div class="column has-text-centered">
+                <img src="./static/imgs/NutThread_Notrain.gif" alt="Nut Thread Not Trained" style="width: 100%; max-width: 260px;" />
+                <p style="font-size: 1em; color: #888;">Nut Thread</p>
+              </div>
+            </div>
+          </div>
+          <div class="has-text-centered" style="margin-bottom: 1em;">
+            <strong>After Training</strong>
+            <div class="columns is-mobile is-centered">
+              <div class="column has-text-centered">
+                <img src="./static/imgs/Peginsetion.gif" alt="Peg Insertion Trained" style="width: 100%; max-width: 260px;" />
+                <p style="font-size: 1em; color: #888;">Peg Insertion</p>
+              </div>
+              <div class="column has-text-centered">
+                <img src="./static/imgs/Gearmesh.gif" alt="Gear Mesh Trained" style="width: 100%; max-width: 260px;" />
+                <p style="font-size: 1em; color: #888;">Gear Mesh</p>
+              </div>
+              <div class="column has-text-centered">
+                <img src="./static/imgs/NutThread.gif" alt="Nut Thread Trained" style="width: 100%; max-width: 260px;" />
+                <p style="font-size: 1em; color: #888;">Nut Thread</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>-->
+
+
+
+      <div class="has-text-centered" style="margin-bottom: 1em;">
+        <strong>Before Training</strong>
+        <div class="columns is-mobile is-centered">
+          <div class="column has-text-centered">
+            <video controls autoplay muted loop style="width: 100%; max-width: 260px;">
+              <source src="./static/videos/Peginsertion_notrain.mp4" type="video/mp4"/>
+              Your browser does not support the video tag.
+            </video>
+            <p style="font-size: 1em; color: #888;">Peg Insertion</p>
+          </div>
+          <div class="column has-text-centered">
+            <video controls autoplay muted loop style="width: 100%; max-width: 260px;">
+              <source src="./static/videos/Gearmesh_Notrain.mp4" type="video/mp4"/>
+              Your browser does not support the video tag.
+            </video>
+            <p style="font-size: 1em; color: #888;">Gear Mesh</p>
+          </div>
+          <div class="column has-text-centered">
+            <video controls autoplay muted loop style="width: 100%; max-width: 260px;">
+              <source src="./static/videos/NutThread_Notrain.mp4" type="video/mp4"/>
+              Your browser does not support the video tag.
+            </video>
+            <p style="font-size: 1em; color: #888;">Nut Thread</p>
+          </div>
+        </div>
+      </div>
+      <div class="has-text-centered" style="margin-bottom: 1em;">
+        <strong>After Training</strong>
+        <div class="columns is-mobile is-centered">
+          <div class="column has-text-centered">
+            <video controls autoplay muted loop style="width: 100%; max-width: 260px;">
+              <source src="./static/videos/Peginsetion.mp4" type="video/mp4"/>
+              Your browser does not support the video tag.
+            </video>
+            <p style="font-size: 1em; color: #888;">Peg Insertion</p>
+          </div>
+          <div class="column has-text-centered">
+            <video controls autoplay muted loop style="width: 100%; max-width: 260px;">
+              <source src="./static/videos/Gearmesh.mp4" type="video/mp4"/>
+              Your browser does not support the video tag.
+            </video>
+            <p style="font-size: 1em; color: #888;">Gear Mesh</p>
+          </div>
+          <div class="column has-text-centered">
+            <video controls autoplay muted loop style="width: 100%; max-width: 260px;">
+              <source src="./static/videos/NutThread.mp4" type="video/mp4"/>
+              Your browser does not support the video tag.
+            </video>
+            <p style="font-size: 1em; color: #888;">Nut Thread</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column has-text-centered">
+        <img src="./static/imgs/Fig_p3_ex.jpg" alt="LLM for Unstructured Task Planning" style="width: 80%;" />
+      </div>
+    </section>
+
+    <!-- Discussions Section -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full has-text-centered">
+            <h2 class="title is-2">Discussions</h2>
+          </div>
+        </div>
+        
+        <div class="content">
+          <table class="table is-striped is-fullwidth" style="border-top: 2px solid #363636; border-bottom: 2px solid #363636;">
+            <thead>
+              <tr>
+                <th style="width: 20%"><b>Key Question</b></th>
+                <th style="width: 26.67%"><b>L1: LLM for Unstructured Task Planning</b></th>
+                <th style="width: 26.67%"><b>L2: VLA for Visuo-Lingo Motor Policy</b></th>
+                <th style="width: 26.67%"><b>L3: Primitives for Contact-Rich Assembly</b></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><i>Q1:</i> Which paradigm to choose?</td>
+                <td>Suitable for planning in complex, long-horizon tasks, such as unstructured production</td>
+                <td>Ideal for visual-language-guided operations, such as multimodal HRC with AR</td>
+                <td>Tailored for spatial tasks with dense physical contact, such as nut and gear assembly</td>
+              </tr>
+              <tr>
+                <td><i>Q2:</i> What are the strengths?</td>
+                <td>Enables zero-shot task interpretation, code generation, and task decomposition, reducing ambiguity</td>
+                <td>Enables direct action generation from vision-language inputs, excelling in SE(2) planar tasks</td>
+                <td>Enables action primitives as a foundation for fine-grained SE(3) manipulation via reinforcement learning</td>
+              </tr>
+              <tr>
+                <td><i>Q3:</i> Where are the challenges?</td>
+                <td>Reliable code generation remains challenging for dynamic interactions</td>
+                <td>Lacks proprioceptive sensing, limiting performance in contact-sensitive tasks</td>
+                <td>Reward design remains a bottleneck requiring domain expertise and tuning</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        
+
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="columns is-centered has-text-centered">
+          <h2 class="title">BibTeX</h2>
+        </div>
+        <p>If you find it helpful, please consider citing our work: </p>
+        <pre><code>@article{wu2024assembrain,
+  title={AssemBrain: Towards Embodied Intelligence Paradigms for Robot Collaboration in Spatial Assembly},
+  author={Wu,Duidi and Zhao,Qianyou and Shen,Yuliang and Li,Junlai and Qi,Jin and Hu,Jie},
+  journal={preprint},
+  year={2024}
+}
+</code></pre>
+      </div>
+    </section>
+
+  </body>
+</html>
